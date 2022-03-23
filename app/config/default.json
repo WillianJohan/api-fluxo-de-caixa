@@ -1,0 +1,11 @@
+{
+    "mysql":{
+        "database":"fluxodecaixa_db",
+        "user":"root",
+        "password":"123456",
+        "host":"172.0.0.1"
+    },
+    "api":{
+        "PORT":3000
+    }
+}
