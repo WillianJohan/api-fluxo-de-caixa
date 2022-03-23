@@ -7,4 +7,5 @@ npm install sequelize
 npm install mysql2
 npm install jsonwebtoken
 npm install config
+npm install dotenv
 npm install nodemon --save-dev
