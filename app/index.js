@@ -7,9 +7,18 @@ const config = require('config');
 app.use(bodyParser.json());
 
 
-const routes = require('./routes/routes')
+const routes = require('./routes/routes');
+const database = require('./database/database');
 app.use(routes)
 
+
+//TESTE do banco de dados
+( async () => {
+
+    const db = require('./database/database')
+    const user = require('./database/models/user')
+    await db.sync()
+})
 
 
 app.listen(config.get('api.PORT'), () => {
