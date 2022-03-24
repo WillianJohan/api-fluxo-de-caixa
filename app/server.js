@@ -1,7 +1,8 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-//const config = require('config') || 3000;
+
+require('dotenv').config()
 require('./database')
 
 app.use(bodyParser.json());
@@ -10,7 +11,7 @@ const routes = require('./routes/routes')
 app.use(routes)
 
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
    console.log('API initialized.....')
-   console.log('API listening on port: %d.....',3000)
+   console.log('API listening on port: %d.....', process.env.PORT)
 })
