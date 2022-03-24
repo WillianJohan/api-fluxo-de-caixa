@@ -2,15 +2,15 @@ const routes = require('express').Router();
 
 
 //Define Routes =====================================
-const users = require('./modules/users')
-const payments = require('./modules/payments')
-const reports = require('./modules/reports')
-const receipts = require('./modules/receipts')
+const users = require('./routerControllers/users')
+const payments = require('./routerControllers/payments')
+const reports = require('./routerControllers/reports')
+const receipts = require('./routerControllers/receipts')
 
 
 //Use Routes ========================================
 routes.get('/', (req, res, next) => {
-    res.json({ message: "It's Working" });
+    res.json({ message: "Seja Bem Vindo!" });
 })
 
 routes.use('/users', users)
