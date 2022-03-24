@@ -1,4 +1,3 @@
-const { user } = require('pg/lib/defaults');
 const User = require('../models/User')
 
 module.exports = {
