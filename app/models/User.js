@@ -1,4 +1,5 @@
 const { Model, DataTypes } = require('sequelize')
+const bcrypt = require('bcrypt')
 
 class User extends Model
 {
@@ -14,6 +15,25 @@ class User extends Model
             sequelize: connection
         })
     }
+
+    static async create(model){
+        try {
+            const hashPass = await this.generateHashPassword(model.password)
+            model.password = hashPass
+            
+            super.create(model)
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
+
+    static generateHashPassword(password)
+    {
+        const hashCost = 12 //custo de 2^12
+        return bcrypt.hash(password, hashCost)
+    }
+
 }
 
 module.exports = User
