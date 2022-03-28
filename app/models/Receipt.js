@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize')
 
-class Payment extends Model
+class Receipt extends Model
 {
     //Metodo padrão do sequelize
     static init(connection)
@@ -16,4 +16,4 @@ class Payment extends Model
     }
 }
 
-module.exports = Payment
+module.exports = Receipt
