@@ -2,13 +2,13 @@ const userRouter = require('express').Router();
 const UserController = require('../../controllers/UserController')
 const passport = require('passport')
 
-const authenticator = require('../../middleware/Authenticate')
+const checkAuth = require('../../middleware/Authenticate').bearer
 
 
 //Requer autorização => lista usuarios
-userRouter.get('/', UserController.index)
-userRouter.post('/create', UserController.store)
-userRouter.post('/remove', UserController.remove)
+userRouter.get('/', checkAuth, UserController.index)
+userRouter.post('/create', checkAuth, UserController.store)
+userRouter.post('/remove', checkAuth, UserController.remove)
 
 
 module.exports = userRouter;
