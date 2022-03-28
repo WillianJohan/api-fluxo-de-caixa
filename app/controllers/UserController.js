@@ -8,18 +8,18 @@ module.exports = {
     
     async store(req, res) {
         // no corpo da requisição, envia o nome, email e senha
-        const { name, email, password } = req.body
+        const { name, email, password, is_admin } = req.body
 
         try{
             //Cria o usuario
-            const user = await User.create({ name, email, password })
+            const user = await User.create({ name, email, password, is_admin })
 
             //Retorna as informações em formato de json.
             return res.json(user)
         }catch(err){
             console.log('Não foi possivel criar usuario')
             console.log(err)
-            return res.json({ name, email, password})
+            return res.json({ name, email, password, is_admin })
         }
     },
 
