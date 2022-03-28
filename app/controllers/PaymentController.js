@@ -1,4 +1,4 @@
-const Payment = require('../models/Payment')
+const Payment = require('../models/Receipt')
 
 module.exports = {
     async index(req, res) {
