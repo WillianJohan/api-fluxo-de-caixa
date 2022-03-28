@@ -1,9 +1,0 @@
-//const User = require('../models/User')
-
-module.exports = {
-    
-    Login(req, res) {
-        res.status(204).send()
-    }
-    
-}

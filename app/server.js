@@ -2,8 +2,7 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 
-const authenticateStrategy = require('./middleware/authenticator')
-
+const authenticateStrategy = require('./Strategies/Authenticator')
 //authenticateStrategy.config()
 
 require('dotenv').config()

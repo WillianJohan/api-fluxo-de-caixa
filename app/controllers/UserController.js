@@ -8,7 +8,7 @@ module.exports = {
     
     async store(req, res) {
         // no corpo da requisição, envia o nome, email e senha
-        const { name, email, password } = req.body;
+        const { name, email, password } = req.body
 
         try{
             //Cria o usuario
@@ -21,5 +21,26 @@ module.exports = {
             console.log(err)
             return res.json({ name, email, password})
         }
+    },
+
+    async remove(req, res) {
+        const { email } = req.body
+        try{
+            const user = await User.findOne({where: { email: email}})
+            if(!user){
+                console.log("Houve uma tentativa de deletar um usuario inexistente! USER: " + email)
+                return res.send({ Message : "Usuario não existe!" })
+            }
+            User.destroy({where : { id : user.id}})
+                .then(
+                    console.log("Usuario Removido com sucesso!"),
+                    res.send({ message : "Usuario " + user.name + " removido!" }))
+                .catch(
+                    console.log("problema ao remover o usuario..."),
+                    res.send({ message : "Usuario " + user.name + " removido!" }))
+        }catch(err){
+            console.log(err)
+        }
     }
+
 }
