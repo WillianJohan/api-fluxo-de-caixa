@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 module.exports = {
     dialect: 'postgres',
     host: 'tuffi.db.elephantsql.com',

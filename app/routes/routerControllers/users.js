@@ -1,7 +1,7 @@
 const userRouter = require('express').Router();
 const UserController = require('../../controllers/UserController')
-const passport = require('passport')
 
+//Importa os middlewares que verifica as permissões
 const { client, admin } = require('../../middleware/Authenticate')
 
 
