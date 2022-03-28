@@ -10,12 +10,19 @@ module.exports = {
                 //Se tiver Erro, identifica o erro para retornar ao usuario
                 if(err)
                 {
-                    if(err.name == 'InvalidArgumentError'){
-                        return res.status(401).json({ erro: err.message })
+                    var errorResponse
+
+                    switch (err.name) {
+                        case 'InvalidArgumentError':
+                            errorResponse = res.status(401).json({ erro: err.message })
+                            break;
+                    
+                        default: //Erro que não esperando
+                            errorResponse = res.status(500).json({ erro: err.message })
+                            break;
                     }
-    
-                    //Erro que não estamos esperando
-                    return res.status(500).json({ erro: err.message })
+                    
+                    return errorResponse
                 }
                 
                 if(!user){
@@ -35,11 +42,21 @@ module.exports = {
             (err, user, info) => {
 
                 if(err){
-                    if(err.name === 'JsonWebTokenError'){
-                        return res.status(401).json({ erro : err.message })
+                    var errorResponse
+                    
+                    switch (err.name) {
+                        case 'JsonWebTokenError':
+                            errorResponse = res.status(401).json({ erro : err.message })
+                            break;
+                        case 'TokenExpiredError':
+                            errorResponse = res.status(401).json({ erro : err.message, expiredIn : err.expiredAt })
+                            break;
+                        default: //Erro que não estamos esperando
+                            errorResponse = res.status(500).json({ erro : err.message })
+                            break;
                     }
-                    //Erro que não estamos esperando
-                    return res.status(500).json({ erro : err.message })
+
+                    return errorResponse
                 }
 
                 if(!user){
